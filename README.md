@@ -1,23 +1,65 @@
-# Neuralnets From Scratch
+# Chapter 1 -  Introducing Neural Networks
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+* “Artificial” neural networks are inspired by the organic brain, translated to the computer.
+* A single neuron by itself is relatively useless, but, when combined with hundreds or thousands (or many more) of other neurons, the interconnectivity produces relationships and results that frequently outperform any other machine learning methods.
 
-There are many great similar repos that summarizes deep neural networks available on GitHub. Within this project, I try to build a document, showing my experience and oerview about neural nets based on the great book - Neural Networks From Scratch by Harrison Kinsley \& Daniel Kukieła (https://nnfs.io/).
 
-Here's the workflow of my notes following each chapter:
-* Taking notes which points are important.
-* Code implementation for examples
+# Chapter 2 - Coding our first neurons
+<!-- Overview -->
+## Overview
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+A single neuron:
+* Suppose we have inputs to this neuron
+* Parameters: at the beginning, weights initialized randomly and biases set as zero '0'
+    - Note: Weights and biases will change inside the model during the training phase.
+* The neuron's output value: `output = inputs * weights + bias`
 
-<!-- ROADMAP -->
-## Roadmap
+A Layer of Neurons:
+* Neural networks typically have layers that consist of more than one neuron.
+* Layers are groups of neurons. Each neuron in a layer takes exactly the same input but contains its own set of weights and its own bias, producing its own unique output.
+* The ​fully connected​ neural network: every neuron in the current layer has connections to every neuron from the previous layer
 
-- [x] Readme and Chapter 1 - Introduction
-- [x] Chapter 2 - Coding first neurons
-- [ ] Chapter 3 - Addding layers
-- [ ] Chapter 4
-- [ ] Chapter 5
-    - [ ] TBA
-    - [ ] TBA
+==> A single neuron and a layer of neurons with Numpy
+`outputs = np.dot(weights, inputs) + biases`
+
+A batch of Data
+* NNs tend to receive data in ​batches to train
+* NNs expect to take in many ​samples​ (also called as feature set instances or observations) at a time for two reasons. One reason is that it’s faster to train in batches in parallel processing, and the other reason is that batches help with generalization during training.
+==> `layer_ouput = np.dot(inputs, np.array(weights).T) + biases`
+
+# Chapter 3 -  Adding layers
+
+* Neural networks become “deep” when they have 2 or more ​hidden layers​ (which layers between these endpoints have values that we don’t necessarily deal with)
+* Note: in following chapters, we will use nnfs.dataset to generate data (which will be explicit in example codes)
+
+Dense Layer (also called as fully-connected layer)
+* Forward method: When we pass data through a model from beginning to end, it is called a forward pass.
+* Note: 
+
+# Chapter 4 -  Activation Functions
+* The activation function is applied to the output of a neuron (or layer of neurons), which modifies outputs. 
+* The reason why using the activation functions because it itself is nonlinear, it allows for neural networks with usually two or more hidden layers to map nonlinear functions.
+* 2 types: used in hidden layers and used in output layers.
+* Some options for activation functions:
+- Sigmoid Activation Function: `σ(z) = 1 / (1 + e^(-z))`
+Outputs values between 0 and 1 -> suitable for binary classification problems where you want to model probabilities.
+- Rectified Linear Unit (ReLU) Activation Function: `ReLU(z) = max(0, z)`
+Outputs the input for positive values and zero for negative values.
+The most widely used activation function at the time of writing for various reasons — mainly speed and efficiency.
+- The Softmax Activation Function: (Output layer for classification)
+This activation can take non-normalized, or uncalibrated, inputs and produce a normalized distribution of probabilities for each classes. This distribution returned by the softmax activation function represents ​confidence scores​ for each class and will add up to 1. The predicted class is associated with the output neuron that returned the largest confidence score.
+
+# Chapter 5 -  Calculating Network Error with Loss
+
+* Loss function (also referred to as the cost function): is the algorithm that quantifies how wrong a model is.
+* Loss​ is the measure of this metric. Since loss is the model’s error, we ideally want it to be 0.
+
+
+
+
+
+
+
+
+<!-- Examples -->
+
