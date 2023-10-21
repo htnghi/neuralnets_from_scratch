@@ -41,8 +41,10 @@ class Activation_Softmax:
     def backward(self, dvalues):
         self.dinputs = np.empty_like(dvalues)   #uninitialized array - same shape with dvalues array
         for index, (single_output, single_dvalues) in enumerate(zip(self.output, dvalues)):
-            single_output = single_output.reshape(-1,1)
+            single_output = single_output.reshape(-1,1)     # Flatten output array
+            # Calculate Jacobian matrix of the output
             jacobian_matrix = np.diagflat(single_output) - np.dot(single_output, single_output.T)
+            # Calculate sample-wise gradient and add it to the array of sample gradients
             self.dinputs[index] = np.dot(jacobian_matrix, single_dvalues)
 
 class Loss:

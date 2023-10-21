@@ -56,7 +56,11 @@ This activation can take non-normalized, or uncalibrated, inputs and produce a n
 
 
 
-
+# Chapter 14 - L1 and L2 Regularization
+* L1 and L2 Regularization: Add penalty number to the loss function to penalize the model for large w and b.\
+*Note: large w indicate that a neuron memorizes a data element*
+    - L1 (rarely used alone) encourages sparsity in weights, effectively setting some weights to exactly zero => help with feature selection and simplifying the model
+    - L2 (commonly used): encourages the model to have smaller weights overall => effectively discourages the model from relying too heavily on any single weight => reducing the risk of overfitting.
 
 
 
